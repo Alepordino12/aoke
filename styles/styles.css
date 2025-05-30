@@ -762,7 +762,7 @@ html{
 }
 
 .faq__toggle:hover svg rect{
-    fill: var(--color-green);
+    /* fill: var(--color-green); */
 }
 
 .faq__toggle svg path{
@@ -770,9 +770,6 @@ html{
     transition: all 0.3s ease;
 }
 
-.faq__toggle:hover svg path{
-    fill: white;
-}
 
 
 .faq__toggle img{
