@@ -21,9 +21,12 @@ const swiper = new Swiper('.hero__swiper', {
 
     buttons.forEach(button => {
       button.addEventListener('click', () => {
-        buttons.forEach(b => b.classList.remove('selected'));
-        button.classList.add('selected');
-        console.log(`Selected in ${groupId}:`, button.dataset.value);
+        if(button.classList.contains('selected')){
+          button.classList.remove('selected')
+        }else{
+          buttons.forEach(b => b.classList.remove('selected'));
+          button.classList.add('selected');
+        }
       });
     });
   }
