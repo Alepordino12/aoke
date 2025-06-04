@@ -16,6 +16,24 @@
     integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4="
     crossorigin="anonymous"></script>
     <title>ENERGORENT</title>
+    <!-- Meta Pixel Code -->
+<script>
+    !function(f,b,e,v,n,t,s)
+    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+    n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t,s)}(window, document,'script',
+    'https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', '1590528374952290');
+    fbq('track', 'PageView');
+    </script>
+    <noscript><img height="1" width="1" style="display:none"
+    src="https://www.facebook.com/tr?id=1590528374952290&ev=PageView&noscript=1"
+    /></noscript>
+    <!-- End Meta Pixel Code -->
+    
 </head>
 <body>
     <div class="wrapper">
@@ -746,7 +764,8 @@
                             </div>
                         </div>
                         <div class="faq__answer">
-                            Нічний тариф дозволяє заощадити на електроенергії, використовуючи обладнання вночі, коли вартість електроенергії нижча. Наші фахівці нададуть безкоштовну консультацію з підключення до нічного тарифу та допоможуть налаштувати обладнання для оптимального використання. Зверніть увагу, що для підключення може знадобитися двозонний лічильник, який не входить у вартість оренди.
+                            Вартість для придбання залежить від обраного терміну оренди. Наприклад, при оренді комплекту Aokeepower (інвертор 5 кВт + батарея 5 кВт·год) на 24 місяці, Спеціальна ціна комплекту (інвертор + батарея) після закінчення оренди становить 17 628, 44 грн. Це означає, що ви можете стати власником обладнання, сплативши орендні платежі на визначиний термін оренди та маєте можливість придбати товар за спеціальною ціною.  Для інших термінів оренди вартість розраховується індивідуально. Детальніше ви можете дізнатися у нашого менеджера або скористатися калькулятором на сайті.
+
 
                         </div>
                     </div>
@@ -933,16 +952,16 @@
                 </p>
                 <div class="modal__calculations-items">
                     <div class="modal__calculations-item">
-                        <span class="calculations__price gradient-text">359,79</span>
+                        <span class="calculations__price calculations__price-daily gradient-text"></span>
                         <span class="calculations__comment">Щоденний платіж</span>
                     </div>
                     <div class="modal__calculations-item">
-                        <span class="calculations__price gradient-text">359,79</span>
+                        <span class="calculations__price calculations__price-monthly gradient-text"></span>
                         <span class="calculations__comment">Розмір щомісячного<br>
                             платежу</span>
                     </div>
                     <div class="modal__calculations-item">
-                        <span class="calculations__price  gradient-text">10 793,58</span>
+                        <span class="calculations__price calculations__price-special  gradient-text"></span>
                         <span class="calculations__comment">Спеціальна ціна після<br>
                             закінчення оренди</span>
                     </div>
@@ -957,5 +976,6 @@
     <script src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/3/jquery.inputmask.bundle.js" defer></script>
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script src="./main.js"></script>
+    <script src="./calculator.js"></script>
 </body>
 </html> 

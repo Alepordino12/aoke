@@ -40,11 +40,13 @@ const swiper = new Swiper('.hero__swiper', {
       modal.style.display = 'flex';
       modalContent.style.display = 'block'; // Показываем форму
       modalSuccess.style.display = 'none'; // Прячем сообщение об успехе
+      modalCalculations.style.display = 'none'
     }
     
     // Открытие модального окна
     heroOpenModalBtn.addEventListener('click', () => {
       openModal()
+
     });
     advantagesOpenModalBtn.addEventListener('click', () => {
       openModal()
@@ -60,6 +62,8 @@ const swiper = new Swiper('.hero__swiper', {
     
     modalSuccessButton.addEventListener('click', () => {
       modal.style.display = 'none';
+      modalCalculations.style.display = 'none';
+      modalSuccess.style.display = 'none';
     });
     
     // Закрытие окна при клике вне его области
@@ -81,6 +85,7 @@ const swiper = new Swiper('.hero__swiper', {
           sendMessage(token, chatId, `Заявка на оренду: \nІм'я: ${name}\nТелефон: ${phone}`)
           modalContent.style.display = 'none';
           modalSuccess.style.display = 'block';
+        
         }catch(e){
           console.log(e)
         }
@@ -164,66 +169,3 @@ const swiper = new Swiper('.hero__swiper', {
     });
 });
 
-
-  /*
-    Calculator
-  */ 
-  const modalCalculationsButton = document.querySelector('.modal__calculations-button')
-
-    let equipmentIndex = null;
-    let termIndex = null;
-    let batteryIndex = null;
-
-  function setupGroup(groupId, onSelect) {
-    const group = document.getElementById(groupId);
-    const buttons = group.querySelectorAll('.button-group__button');
-
-    buttons.forEach((button, index) => {
-      button.addEventListener('click', () => {
-        if(button.classList.contains('selected')){
-          button.classList.remove('selected')
-          onSelect(null);
-        }else{
-          buttons.forEach(b => b.classList.remove('selected'));
-          button.classList.add('selected');
-          onSelect(index);
-        }
-      });
-    });
-  }
-
-  setupGroup('equipment-group', index => equipmentIndex = index);
-  setupGroup('term-group', index => termIndex = index);
-  setupGroup('battery-group', index => batteryIndex = index);
-
-
-  const calculatePaymentsData = (equipmentIndex, termIndex, batteryIndex) => {
-    return [
-      100,
-      1000,
-      1079358
-    ]
-  }
-
-  let dailyPaymentValue;
-  let monthlyPaymentValue;
-  let specialPricePaymentValue;
- 
-  document.querySelector('.calculator__calculate ').addEventListener('click', () => {
-    if (equipmentIndex === null || termIndex === null) {
-      alert('Будь ласка, оберыть Тип обладнання та Термін оренди.');
-      return;
-    }
-    
-    [dailyPaymentValue, monthlyPaymentValue, specialPricePaymentValue] = 
-    calculatePaymentsData(equipmentIndex, termIndex, batteryIndex);
-    modalContent.style.display = 'none'
-    modalCalculations.style.display = 'block'
-    modal.style.display = 'flex';
-   
-  });
-
-  modalCalculationsButton.addEventListener('click', ()=>{
-     modalContent.style.display = 'block';
-      modalCalculations.style.display = 'none'
-  })

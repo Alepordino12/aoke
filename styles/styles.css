@@ -321,6 +321,7 @@ html{
 }
 
 .swiper__controls{
+    display: none !important;
     position: absolute;
     width: 100%;
     top: 50%;
@@ -344,6 +345,10 @@ html{
     position: static !important;
     margin-top: 0 !important;
  }
+
+.swiper__outer:hover .swiper__controls{
+    display: flex !important;
+}
 
  .hero__swiper-button-next img, .hero__swiper-button-prev img {
     margin-right: 2px;
@@ -801,15 +806,22 @@ html{
        }
        .calculator__wrapper{
         margin-top: 40px;
+       
     }
 }
 
 @media(max-width: 480px){
     .calculator{
-        padding: 40px 0;
+        padding: 40px;
     }
     .calculator__wrapper{
         margin-top: 20px;
+        padding: 1.67rem 2.5rem;
+        width: 100%;
+        min-width: 0;
+    }
+    .calculator__calculate {
+        font-size: 1.25rem;
     }
    
 }
@@ -1504,14 +1516,14 @@ html{
 
   }
   .calculations__price{
-    font-size: 65px;
+    font-size: 44px;
     line-height: 110%;
     text-transform: uppercase;
     font-family: 'Benzin';
   }
   .calculations__comment{
     font-weight: 500;
-font-size: 36px;
+font-size: 30px;
 line-height: 110%;
   }
 
