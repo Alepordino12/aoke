@@ -35,7 +35,7 @@
  
   document.querySelector('.calculator__calculate ').addEventListener('click', () => {
     if (equipmentIndex === null || termIndex === null) {
-      alert('Будь ласка, оберыть Тип обладнання та Термін оренди.');
+      alert('Будь ласка, оберіть Тип обладнання та Термін оренди.');
       return;
     }
     let dailyPaymentValue;
