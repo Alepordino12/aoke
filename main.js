@@ -9,58 +9,16 @@ const swiper = new Swiper('.hero__swiper', {
     },
     loop: true,
     slidesPerView: 1,
-    pagination: false,
-    navigation: false,
+    navigation: {
+      nextEl: '.hero__swiper-button-next',
+      prevEl: '.hero__swiper-button-prev',
+    },
   });
   
 
 
-  function setupGroup(groupId) {
-    const group = document.getElementById(groupId);
-    const buttons = group.querySelectorAll('.button-group__button');
-
-    buttons.forEach(button => {
-      button.addEventListener('click', () => {
-        if(button.classList.contains('selected')){
-          button.classList.remove('selected')
-        }else{
-          buttons.forEach(b => b.classList.remove('selected'));
-          button.classList.add('selected');
-        }
-      });
-    });
-  }
-
-  setupGroup('equipment-group');
-  setupGroup('term-group');
-  setupGroup('battery-group');
 
 
-
-
-  // FAQ
-
-  document.querySelectorAll('.faq__question').forEach(question => {
-    question.addEventListener('click', () => {
-        const answer = question.nextElementSibling;
-        const toggle = question.querySelector('.faq__toggle');
-        document.querySelectorAll('.faq__answer').forEach(item => item.classList.remove('active'));
-        
-        question.classList.toggle('active')
-        if (answer.style.maxHeight) {
-            answer.style.maxHeight = null;
-            // toggle.textContent = '+';
-            
-        } else {
-            document.querySelectorAll('.faq__answer').forEach(item => item.style.maxHeight = null);
-            answer.classList.toggle('active')
-
-            answer.style.maxHeight = answer.scrollHeight + 'px';
-            // toggle.textContent = '×';
-           
-        }
-    });
-});
 
 
 /*
@@ -68,14 +26,16 @@ const swiper = new Swiper('.hero__swiper', {
   */
 
     const heroOpenModalBtn = document.querySelector('.short-info__button');
+    const advantagesOpenModalBtn = document.querySelector('.advantages-us__button');
 
     const modal = document.querySelector('.modal');
     // const closeModalBtn = document.querySelector('.modal__close');
     const modalContent = document.querySelector('.modal__content');
     const modalSuccess = document.querySelector('.success__content');
+    const modalCalculations = document.querySelector('.modal__calculations');
     const modalForm =  document.querySelector('.modal__form')
     const modalSuccessButton = document.querySelector('.modal__success-button')
-    
+  
     function openModal(){
       modal.style.display = 'flex';
       modalContent.style.display = 'block'; // Показываем форму
@@ -84,6 +44,9 @@ const swiper = new Swiper('.hero__swiper', {
     
     // Открытие модального окна
     heroOpenModalBtn.addEventListener('click', () => {
+      openModal()
+    });
+    advantagesOpenModalBtn.addEventListener('click', () => {
       openModal()
     });
     
@@ -173,3 +136,94 @@ const swiper = new Swiper('.hero__swiper', {
        });
     
     });
+
+
+
+
+      // FAQ
+
+  document.querySelectorAll('.faq__question').forEach(question => {
+    question.addEventListener('click', () => {
+        const answer = question.nextElementSibling;
+        const toggle = question.querySelector('.faq__toggle');
+        document.querySelectorAll('.faq__answer').forEach(item => item.classList.remove('active'));
+        
+        question.classList.toggle('active')
+        if (answer.style.maxHeight) {
+            answer.style.maxHeight = null;
+            // toggle.textContent = '+';
+            
+        } else {
+            document.querySelectorAll('.faq__answer').forEach(item => item.style.maxHeight = null);
+            answer.classList.toggle('active')
+
+            answer.style.maxHeight = answer.scrollHeight + 'px';
+            // toggle.textContent = '×';
+           
+        }
+    });
+});
+
+
+  /*
+    Calculator
+  */ 
+  const modalCalculationsButton = document.querySelector('.modal__calculations-button')
+
+    let equipmentIndex = null;
+    let termIndex = null;
+    let batteryIndex = null;
+
+  function setupGroup(groupId, onSelect) {
+    const group = document.getElementById(groupId);
+    const buttons = group.querySelectorAll('.button-group__button');
+
+    buttons.forEach((button, index) => {
+      button.addEventListener('click', () => {
+        if(button.classList.contains('selected')){
+          button.classList.remove('selected')
+          onSelect(null);
+        }else{
+          buttons.forEach(b => b.classList.remove('selected'));
+          button.classList.add('selected');
+          onSelect(index);
+        }
+      });
+    });
+  }
+
+  setupGroup('equipment-group', index => equipmentIndex = index);
+  setupGroup('term-group', index => termIndex = index);
+  setupGroup('battery-group', index => batteryIndex = index);
+
+
+  const calculatePaymentsData = (equipmentIndex, termIndex, batteryIndex) => {
+    return [
+      100,
+      1000,
+      1079358
+    ]
+  }
+
+  let dailyPaymentValue;
+  let monthlyPaymentValue;
+  let specialPricePaymentValue;
+ 
+  document.querySelector('.calculator__calculate ').addEventListener('click', () => {
+    if (equipmentIndex === null || termIndex === null) {
+      alert('Будь ласка, оберыть Тип обладнання та Термін оренди.');
+      return;
+    }
+    
+    [dailyPaymentValue, monthlyPaymentValue, specialPricePaymentValue] = 
+    calculatePaymentsData(equipmentIndex, termIndex, batteryIndex);
+    modalContent.style.display = 'none'
+    modalCalculations.style.display = 'block'
+    modal.style.display = 'flex';
+   
+  });
+
+  modalCalculationsButton.addEventListener('click', ()=>{
+     modalContent.style.display = 'block';
+      modalCalculations.style.display = 'none'
+  })
